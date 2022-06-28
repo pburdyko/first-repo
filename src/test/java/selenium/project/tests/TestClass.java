@@ -3,6 +3,7 @@ package selenium.project.tests;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import selenium.framework.cookies.ManagerCookie;
 import selenium.project.pages.HomePage;
 
 public class TestClass extends BaseTest {
@@ -13,10 +14,17 @@ public class TestClass extends BaseTest {
     public void test() {
         HomePage homePage= new HomePage();
         homePage.open();
-        Assert.assertEquals(homePage.getText(), "{\n" +
-                "  \"authenticated\": true, \n" +
-                "  \"user\": \"user\"\n" +
-                "}");
+
+        ManagerCookie.addCookie("example_key_1", "example_value_1");
+        ManagerCookie.addCookie("example_key_2", "example_value_2");
+        ManagerCookie.addCookie("example_key_3", "example_value_3");
+
+        Assert.assertEquals(ManagerCookie.getNumberCookies(), 3,"number of cookies is incorrect");
+
+        ManagerCookie.deleteCookieByName("example_key_1");
+
+        Assert.assertEquals(ManagerCookie.getNumberCookies(), 2, "number of cookies is incorrect");
+
 
 
 //        WebElement login1 = driver.findElement(By.xpath("//input[@name='login']"));
