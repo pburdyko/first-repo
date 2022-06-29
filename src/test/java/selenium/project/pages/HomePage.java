@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 import selenium.framework.browser.Browser;
 
 public class HomePage extends BasePage {
-    private FormElement responseAuth = new FormElement (By.xpath("/html/body/pre"), "responseAuth");
+    private FormElement responseAuth = new FormElement (By.xpath("//*[@id=\"content\"]/div/h3"), "responseAuth");
+    private String iframeId = "";
 
     public void open () {
         Browser.BROWSER.open();
@@ -13,5 +14,7 @@ public class HomePage extends BasePage {
     public String getText () {
         return responseAuth.getText();
     }
-
+    public void switchToIframe() {
+        switchToIframe(iframeId);
+    }
 }

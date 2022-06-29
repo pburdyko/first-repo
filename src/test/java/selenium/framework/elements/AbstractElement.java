@@ -37,6 +37,7 @@ public abstract class AbstractElement {
         element.click();
     }
 
+
     public String getText() {
         return findElement().getText();
     }

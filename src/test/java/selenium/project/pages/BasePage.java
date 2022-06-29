@@ -10,4 +10,8 @@ public abstract class BasePage {
     public BasePage () {
         this.driver = Browser.BROWSER.getDriver();
     }
+
+    public void switchToIframe(String id) {
+        this.driver.switchTo().frame(id);
+    }
 }
